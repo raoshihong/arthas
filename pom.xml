@@ -62,6 +62,7 @@
         <module>testcase</module>
         <module>site</module>
         <module>packaging</module>
+        <module>study-arthas</module>
     </modules>
 
     <properties>
