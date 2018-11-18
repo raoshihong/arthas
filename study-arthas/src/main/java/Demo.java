@@ -1,7 +1,5 @@
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
+import java.util.concurrent.Executors;
 import java.util.concurrent.TimeUnit;
 import java.util.concurrent.atomic.AtomicInteger;
 
@@ -63,6 +61,22 @@ public class Demo {
     }
 
     public static void main(String[] args) throws InterruptedException {
+        final List<String> strings = new ArrayList<String>();
+        new Thread(new Runnable() {
+            @Override
+            public void run() {
+                while (true){
+                    try {
+                        Thread.sleep(100);
+                    } catch (InterruptedException e) {
+                        e.printStackTrace();
+                    }
+                    String string = ""+new Random().nextInt();
+                    System.out.println(string);
+                    strings.add(string);
+                }
+            }
+        },"dead task").start();
         while (true) {
             execute();
             Counter.increment();
